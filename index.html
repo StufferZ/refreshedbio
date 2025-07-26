@@ -56,7 +56,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 1rem; /* Уменьшаем боковые отступы для мобильных */
             opacity: 0;
             transform: scale(0.95);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -92,91 +92,20 @@
         }
         
         /* --- CONTENT STYLES --- */
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            letter-spacing: -1.5px;
-            margin-bottom: 1rem;
-        }
-        h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 2.5rem;
-            color: var(--text-color-muted);
-            letter-spacing: -1px;
-        }
-        p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            max-width: 600px;
-            color: var(--text-color-muted);
-        }
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 1.5rem;
-            background-color: #333;
-            border: 2px solid var(--card-border-color);
-            box-shadow: 0 0 20px rgba(0,0,0,.3);
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-        .gallery-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            border-radius: 20px;
-            transition: background-color .3s ease,transform .3s ease;
-        }
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            background-color: rgba(255,255,255,.03);
-        }
-        .gallery-item img {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            object-fit: cover;
-            background-color: #333;
-            border: 2px solid transparent;
-            transition: border-color .3s ease,box-shadow .3s ease;
-        }
-        .gallery-item:hover img {
-            border-color: var(--glow-color);
-            box-shadow: 0 0 20px var(--glow-color);
-        }
-        .gallery-item span {
-            font-size: .9rem;
-            font-weight: 500;
-            color: var(--text-color);
-        }
-        .gd-list {
-            list-style: none;
-            padding: 0;
-            font-size: 1.2rem;
-            line-height: 2;
-        }
-        a {
-            color: var(--highlight-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: filter .3s ease;
-        }
-        a:hover {
-            filter: brightness(1.2);
-        }
-        .footer-text {
-            font-size: .9rem;
-            line-height: 1.6;
-        }
+        h1 {font-size: 3.5rem;font-weight: 700;letter-spacing: -1.5px;margin-bottom: 1rem;}
+        h2 {font-size: 2.5rem;font-weight: 600;margin-bottom: 2.5rem;color: var(--text-color-muted);letter-spacing: -1px;}
+        p {font-size: 1.1rem;line-height: 1.7;max-width: 600px;color: var(--text-color-muted);}
+        .avatar {width: 120px;height: 120px;border-radius: 50%;object-fit: cover;margin-bottom: 1.5rem;background-color: #333;border: 2px solid var(--card-border-color);box-shadow: 0 0 20px rgba(0,0,0,.3);}
+        .gallery {display: flex;flex-wrap: wrap;justify-content: center;gap: 1.5rem;}
+        .gallery-item {display: flex;flex-direction: column;align-items: center;gap: 1rem;padding: 1rem;border-radius: 20px;transition: background-color .3s ease,transform .3s ease;}
+        .gallery-item:hover {transform: translateY(-5px);background-color: rgba(255,255,255,.03);}
+        .gallery-item img {width: 90px;height: 90px;border-radius: 50%;object-fit: cover;background-color: #333;border: 2px solid transparent;transition: border-color .3s ease,box-shadow .3s ease;}
+        .gallery-item:hover img {border-color: var(--glow-color);box-shadow: 0 0 20px var(--glow-color);}
+        .gallery-item span {font-size: .9rem;font-weight: 500;color: var(--text-color);}
+        .gd-list {list-style: none;padding: 0;font-size: 1.2rem;line-height: 2;}
+        a {color: var(--highlight-color);text-decoration: none;font-weight: 500;transition: filter .3s ease;}
+        a:hover {filter: brightness(1.2);}
+        .footer-text {font-size: .9rem;line-height: 1.6;}
 
         /* --- FULL-SCREEN IDLE OVERLAY --- */
         .idle-overlay {
@@ -196,21 +125,8 @@
             pointer-events: none;
             transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1);
         }
-
-        .idle-overlay.visible {
-            opacity: 1;
-        }
-
-        .idle-overlay__text {
-            color: var(--text-color);
-            font-size: 1.2rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1.5rem;
-            padding-left: 1.5rem;
-            animation: text-pulse 3s infinite ease-in-out;
-        }
-
+        .idle-overlay.visible {opacity: 1;}
+        .idle-overlay__text {color: var(--text-color);font-size: 1.2rem;font-weight: 500;text-transform: uppercase;letter-spacing: 1.5rem;padding-left: 1.5rem;animation: text-pulse 3s infinite ease-in-out;}
         @keyframes text-pulse {
             0% { opacity: 0.5; transform: scale(0.98); }
             50% { opacity: 1; transform: scale(1); }
@@ -219,42 +135,59 @@
 
         /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
+            .screen {
+                padding: 1rem;
+            }
             .card {
-                padding: 2.5rem 1.5rem;
+                padding: 2rem 1.5rem;
                 border-radius: 24px;
             }
-
             h1 {
                 font-size: 2.5rem;
                 letter-spacing: -1px;
             }
-
             h2 {
                 font-size: 2rem;
                 margin-bottom: 2rem;
             }
-
             p {
                 font-size: 1rem;
             }
-            
             .gd-list {
                 font-size: 1.1rem;
             }
             
+            /* --- НОВЫЕ СТИЛИ ДЛЯ ГАЛЕРЕИ НА МОБИЛЬНЫХ --- */
             .gallery {
-                gap: 1rem;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+                gap: 0.5rem; /* Уменьшаем отступ */
             }
-
+            .gallery-item {
+                padding: 0.5rem;
+                gap: 0.5rem;
+            }
             .gallery-item img {
-                width: 70px;
-                height: 70px;
+                width: 80px; /* Уменьшаем размер аватаров */
+                height: 80px;
             }
+            .gallery-item span {
+                font-size: 0.8rem; /* Уменьшаем текст */
+                text-align: center;
+            }
+            /* ------------------------------------------- */
 
             .idle-overlay__text {
                 font-size: 1rem;
                 letter-spacing: 0.8rem;
                 padding-left: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 380px) {
+             .gallery-item img {
+                width: 70px; /* Еще немного уменьшаем для самых узких экранов */
+                height: 70px;
             }
         }
 
