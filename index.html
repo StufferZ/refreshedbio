@@ -3,363 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>leizark</title>
+    <title>Coming Soon</title>
+    <!-- Preconnect to Google Fonts for better performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Import a variety of fonts from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&family=Lato:wght@400;700&family=Open+Sans:wght@400;700&family=Slabo+27px&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Source+Code+Pro:wght@400;700&family=Dancing+Script:wght@400;700&family=Lobster&family=Pacifico&family=Caveat&family=Special+Elite&family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #101012;
-            --card-bg-color: rgba(28, 28, 30, 0.75);
-            --card-border-color: rgba(255, 255, 255, 0.1);
-            --text-color: #f0f0f0;
-            --text-color-muted: rgba(240, 240, 240, 0.6);
-            --highlight-color: #007aff;
-            --glow-color: rgba(0, 122, 255, 0.5);
-        }
-
-        * {
+        /* Basic reset and body styling */
+        body, html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            background-image: radial-gradient(ellipse at center, rgba(38, 38, 42, 0.8) 0%, var(--bg-color) 70%);
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        /* --- SCROLL CONTAINER AND CARDS --- */
-        .scroll-container {
-            height: 500vh;
-            position: relative;
-        }
-        
-        .main-content {
-            transition: filter 0.5s ease-out;
-        }
-
-        .screen {
-            height: 100vh;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem; /* Уменьшаем боковые отступы для мобильных */
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            z-index: 2;
-        }
-
-        .screen.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .card {
-            width: 100%;
-            max-width: 700px;
-            padding: 3rem 4rem;
-            background: var(--card-bg-color);
-            border: 1px solid var(--card-border-color);
-            border-radius: 32px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-
-        /* --- CENTRAL SCROLL-TELLING ANIMATION --- */
-        .scroll-animation {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
-            z-index: 1;
-            pointer-events: none;
+            overflow: hidden;
+            background-color: #ffffff; /* Clean white background */
+            color: #000000; /* Black text color */
+            font-family: 'Roboto', sans-serif; /* Default font */
         }
-        
-        /* --- CONTENT STYLES --- */
-        h1 {font-size: 3.5rem;font-weight: 700;letter-spacing: -1.5px;margin-bottom: 1rem;}
-        h2 {font-size: 2.5rem;font-weight: 600;margin-bottom: 2.5rem;color: var(--text-color-muted);letter-spacing: -1px;}
-        p {font-size: 1.1rem;line-height: 1.7;max-width: 600px;color: var(--text-color-muted);}
-        .avatar {width: 120px;height: 120px;border-radius: 50%;object-fit: cover;margin-bottom: 1.5rem;background-color: #333;border: 2px solid var(--card-border-color);box-shadow: 0 0 20px rgba(0,0,0,.3);}
-        .gallery {display: flex;flex-wrap: wrap;justify-content: center;gap: 1.5rem;}
-        .gallery-item {display: flex;flex-direction: column;align-items: center;gap: 1rem;padding: 1rem;border-radius: 20px;transition: background-color .3s ease,transform .3s ease;}
-        .gallery-item:hover {transform: translateY(-5px);background-color: rgba(255,255,255,.03);}
-        .gallery-item img {width: 90px;height: 90px;border-radius: 50%;object-fit: cover;background-color: #333;border: 2px solid transparent;transition: border-color .3s ease,box-shadow .3s ease;}
-        .gallery-item:hover img {border-color: var(--glow-color);box-shadow: 0 0 20px var(--glow-color);}
-        .gallery-item span {font-size: .9rem;font-weight: 500;color: var(--text-color);}
-        .gd-list {list-style: none;padding: 0;font-size: 1.2rem;line-height: 2;}
-        a {color: var(--highlight-color);text-decoration: none;font-weight: 500;transition: filter .3s ease;}
-        a:hover {filter: brightness(1.2);}
-        .footer-text {font-size: .9rem;line-height: 1.6;}
 
-        /* --- FULL-SCREEN IDLE OVERLAY --- */
-        .idle-overlay {
+        /* Main content area */
+        #main-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            visibility: hidden; /* Hide until fonts are loaded */
+        }
+
+        /* Container for the bouncing text. Using absolute positioning for movement. */
+        #soon-container {
+            position: absolute;
+            white-space: nowrap; /* Prevents text from wrapping */
+        }
+
+        /* Styling for the "SOON" text */
+        #soon-text {
+            font-size: 8vw; /* Responsive font size based on viewport width */
+            font-weight: bold;
+            letter-spacing: 0.5em; /* Spacing between letters */
+            text-transform: uppercase;
+            transition: font-family 0.2s ease-in-out; /* Smooth transition for font change */
+            padding: 10px;
+        }
+
+        /* Message to prompt user to rotate their device */
+        #rotate-message {
+            display: none; /* Hidden by default */
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            color: #000000;
             z-index: 100;
-            display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(16, 16, 18, 0.5);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .idle-overlay.visible {opacity: 1;}
-        .idle-overlay__text {color: var(--text-color);font-size: 1.2rem;font-weight: 500;text-transform: uppercase;letter-spacing: 1.5rem;padding-left: 1.5rem;animation: text-pulse 3s infinite ease-in-out;}
-        @keyframes text-pulse {
-            0% { opacity: 0.5; transform: scale(0.98); }
-            50% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0.5; transform: scale(0.98); }
+            text-align: center;
+            font-size: 5vw;
+            font-family: 'Poppins', sans-serif;
         }
 
-        /* --- MOBILE OPTIMIZATION --- */
-        @media (max-width: 768px) {
-            .screen {
-                padding: 1rem;
+        /* Media query to show the rotate message on portrait mobile screens */
+        @media (max-width: 768px) and (orientation: portrait) {
+            #main-content {
+                display: none; /* Hide the bouncing text */
             }
-            .card {
-                padding: 2rem 1.5rem;
-                border-radius: 24px;
-            }
-            h1 {
-                font-size: 2.5rem;
-                letter-spacing: -1px;
-            }
-            h2 {
-                font-size: 2rem;
-                margin-bottom: 2rem;
-            }
-            p {
-                font-size: 1rem;
-            }
-            .gd-list {
-                font-size: 1.1rem;
-            }
-            
-            /* --- НОВЫЕ СТИЛИ ДЛЯ ГАЛЕРЕИ НА МОБИЛЬНЫХ --- */
-            .gallery {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr); /* 3 колонки */
-                gap: 0.5rem; /* Уменьшаем отступ */
-            }
-            .gallery-item {
-                padding: 0.5rem;
-                gap: 0.5rem;
-            }
-            .gallery-item img {
-                width: 80px; /* Уменьшаем размер аватаров */
-                height: 80px;
-            }
-            .gallery-item span {
-                font-size: 0.8rem; /* Уменьшаем текст */
-                text-align: center;
-            }
-            /* ------------------------------------------- */
-
-            .idle-overlay__text {
-                font-size: 1rem;
-                letter-spacing: 0.8rem;
-                padding-left: 0.8rem;
+            #rotate-message {
+                display: flex; /* Show the rotate message */
             }
         }
-        
-        @media (max-width: 380px) {
-             .gallery-item img {
-                width: 70px; /* Еще немного уменьшаем для самых узких экранов */
-                height: 70px;
-            }
-        }
-
     </style>
 </head>
 <body>
 
-    <div class="main-content">
-        <canvas id="scroll-canvas" class="scroll-animation"></canvas>
-
-        <div class="scroll-container">
-            <section class="screen" id="screen-1">
-                <div class="card">
-                    <img src="https://raw.githubusercontent.com/StufferZ/refreshedbio/refs/heads/main/pfp.jpg" alt="leizark avatar" class="avatar">
-                    <h1>leizark</h1>
-                    <p>Playing Geometry Dash and making shitposts on TikTok.<br>I am from Kazakhstan 🇰🇿</p>
-                </div>
-            </section>
-
-            <section class="screen" id="screen-2">
-                <div class="card">
-                    <h2>My Favorite YouTubers</h2>
-                    <div class="gallery">
-                        <div class="gallery-item"><img src="https://yt3.googleusercontent.com/ytc/AIdro_kTk7hhEG9ymIpHepn6uh6Y1L_oRXuM2pS9kuKjr2V_pXY=s160-c-k-c0x00ffffff-no-rj" alt="KingSammelot"><span>KingSammelot</span></div>
-                        <div class="gallery-item"><img src="https://yt3.googleusercontent.com/JpHsYhlcNRk2i8JGDNv3WtDFcsd1J2p3pOqWN7028RhBKmkTXCXEJIxBdN1knc0qTSNa1RPM=s160-c-k-c0x00ffffff-no-rj" alt="Zack Main"><span>Zack Main</span></div>
-                        <div class="gallery-item"><img src="https://yt3.googleusercontent.com/ytc/AIdro_lDRSXSQutngc-vP4RyLRSuRSRlJYxWJTFwVoaQVD0Hja4=s160-c-k-c0x00ffffff-no-rj" alt="jacknjellify"><span>jacknjellify</span></div>
-                        <div class="gallery-item"><img src="https://yt3.googleusercontent.com/ESSIcskWJsT46dW_D2t8aR3ZX_Eiay9a2e_yh1lfZNfaLrPpqAxMuTZAztDPvrMppD8trDkcJg=s160-c-k-c0x00ffffff-no-rj" alt="TheBrianMaps"><span>TheBrianMaps</span></div>
-                        <div class="gallery-item"><img src="https://yt3.googleusercontent.com/jWz5RqA4r-hTFy6riKZCwK5iSzv7KmYzrfn09TpqxRuXSl4qR-KjuIf3peF67jeWTLMkrpzycw=s160-c-k-c0x00ffffff-no-rj" alt="Vortrox"><span>Vortrox</span></div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="screen" id="screen-3">
-                <div class="card">
-                    <h2>My GD Hardest Levels</h2>
-                    <ul class="gd-list">
-                        <li>Necropolis — <a href="http://www.youtube.com/watch?v=1439Y6WkRts" target="_blank">Watch</a></li>
-                        <li>Windy Landscape — <a href="http://www.youtube.com/watch?v=5_n7hs4prUg" target="_blank">Watch</a></li>
-                        <li>8o — 98%...</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="screen" id="screen-4">
-                 <div class="card">
-                    <h2>My Favorite Artists</h2>
-                    <div class="gallery">
-                        <div class="gallery-item"><img src="https://yt3.googleusercontent.com/BG0oNDlt3JF8fgq9E0G_Vd20Vd4fCT5aA1RpV6lFeBM4o1AurirSlNFDMeFvwx3iO_KJ4jOR0A=s900-c-k-c0x00ffffff-no-rj" alt="F-777"><span>F-777</span></div>
-                        <div class="gallery-item"><img src="https://upload.wikimedia.org/wikipedia/en/9/96/FUSYTUAWBUN.jpg?20250403000144" alt="Skrillex"><span>Skrillex</span></div>
-                        <div class="gallery-item"><img src="https://upload.wikimedia.org/wikipedia/ru/a/a9/%D0%9E%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0_%D0%9A%D1%80%D0%B0%D1%81%D0%BE%D1%82%D0%B0_%D0%B8_%D1%83%D1%80%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE.jpg?20211201211358" alt="Oxxxymiron"><span>Oxxxymiron</span></div>
-                        <div class="gallery-item"><img src="https://cdn-image.zvuk.com/pic?type=release&id=39392948&size=medium&hash=bcd076b8-e560-4a11-a959-5254077f8493" alt="JOMERGMD"><span>JOMERGMD</span></div>
-                        <div class="gallery-item"><img src="https://i.ytimg.com/vi/3EYxSf_KghI/maxresdefault.jpg" alt="TheFatRat"><span>TheFatRat</span></div>
-                        <div class="gallery-item"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Yeezus_album_cover.png/250px-Yeezus_album_cover.png" alt="Kanye West"><span>Kanye West</span></div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="screen" id="screen-5">
-                <div class="card">
-                    <h1>leizark + Gemini</h1>
-                    <p class="footer-text">All rights are NOT reserved.<br>Made with ❤️</p>
-                </div>
-            </section>
+    <div id="main-content">
+        <div id="soon-container">
+            <h1 id="soon-text">S O O N</h1>
         </div>
     </div>
 
-    <div class="idle-overlay" id="idle-overlay">
-        <div class="idle-overlay__text">S C R O L L</div>
+    <div id="rotate-message">
+        Please rotate your device to landscape mode.
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- SETUP CANVAS AND ELEMENTS ---
-            const canvas = document.getElementById('scroll-canvas');
-            const ctx = canvas.getContext('2d');
-            let { width, height } = canvas.getBoundingClientRect();
-            canvas.width = width * window.devicePixelRatio;
-            canvas.height = height * window.devicePixelRatio;
-            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        // DOM Elements
+        const mainContent = document.getElementById('main-content');
+        const soonContainer = document.getElementById('soon-container');
+        const soonText = document.getElementById('soon-text');
+
+        // Font array
+        const fonts = [
+            'Roboto', 'Montserrat', 'Lato', 'Open Sans', 'Slabo 27px',
+            'Playfair Display', 'Poppins', 'Source Code Pro', 'Dancing Script',
+            'Lobster', 'Pacifico', 'Caveat', 'Special Elite', 'Press Start 2P', 'Orbitron'
+        ];
+        let lastFontIndex = -1;
+
+        // Animation variables
+        let x, y; // Position
+        let dx, dy; // Velocity (direction)
+        let containerWidth, containerHeight;
+        let windowWidth, windowHeight;
+
+        /**
+         * Changes the font of the 'soonText' element to a random one from the 'fonts' array.
+         */
+        function changeFont() {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * fonts.length);
+            } while (randomIndex === lastFontIndex);
+            lastFontIndex = randomIndex;
+            soonText.style.fontFamily = `'${fonts[randomIndex]}', sans-serif`;
+        }
+
+        /**
+         * Initializes or re-initializes the animation variables.
+         * Called on load and on window resize.
+         */
+        function init() {
+            // Get the dimensions of the window and the text container
+            windowWidth = window.innerWidth;
+            windowHeight = window.innerHeight;
+            containerWidth = soonContainer.clientWidth;
+            containerHeight = soonContainer.clientHeight;
+
+            // Set a random starting position
+            x = Math.random() * (windowWidth - containerWidth);
+            y = Math.random() * (windowHeight - containerHeight);
+
+            // Set a random starting velocity/direction
+            dx = (Math.random() < 0.5 ? 1 : -1) * 3; // Horizontal speed
+            dy = (Math.random() < 0.5 ? 1 : -1) * 3; // Vertical speed
+        }
+
+        /**
+         * The main animation loop.
+         */
+        function animate() {
+            // Update position based on velocity
+            x += dx;
+            y += dy;
+
+            // Collision detection with window edges
+            let bounced = false;
+            // Right or left wall
+            if (x + containerWidth >= windowWidth || x <= 0) {
+                dx = -dx; // Reverse horizontal direction
+                if (x < 0) x = 0; // Prevent getting stuck
+                if (x + containerWidth > windowWidth) x = windowWidth - containerWidth;
+                bounced = true;
+            }
+            // Bottom or top wall
+            if (y + containerHeight >= windowHeight || y <= 0) {
+                dy = -dy; // Reverse vertical direction
+                if (y < 0) y = 0; // Prevent getting stuck
+                if (y + containerHeight > windowHeight) y = windowHeight - containerHeight;
+                bounced = true;
+            }
             
-            const screens = document.querySelectorAll('.screen');
-            const scrollContainer = document.querySelector('.scroll-container');
-            const idleOverlay = document.getElementById('idle-overlay');
-            
-            // --- PARTICLE ANIMATION ---
-            const particles = [];
-            const particleCount = 50;
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
-                    angle: Math.random() * Math.PI * 2,
-                    speed: (Math.random() - 0.5) * 0.02,
-                    baseOrbit: 50 + Math.random() * 50,
-                    size: 1 + Math.random() * 1.5,
-                    alpha: 0.2 + Math.random() * 0.5
-                });
+            // Change font if a bounce occurred
+            if (bounced) {
+                changeFont();
             }
 
-            function drawAnimation(progress) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                const centerX = width / 2;
-                const centerY = height / 2;
-                const maxOrbit = Math.min(centerX, centerY) * 0.8;
+            // Apply the new position to the container
+            soonContainer.style.left = `${x}px`;
+            soonContainer.style.top = `${y}px`;
 
-                particles.forEach(p => {
-                    p.angle += p.speed;
-                    const orbitRadius = p.baseOrbit + (maxOrbit - p.baseOrbit) * Math.pow(progress, 2);
-                    const x = centerX + Math.cos(p.angle) * orbitRadius;
-                    const y = centerY + Math.sin(p.angle) * orbitRadius;
+            // Request the next frame to continue the animation
+            requestAnimationFrame(animate);
+        }
 
-                    ctx.beginPath();
-                    ctx.arc(x, y, p.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * (0.5 + progress * 0.5)})`;
-                    ctx.fill();
-                });
-            }
-
-            // --- SCREEN VISIBILITY LOGIC ---
-            function updateScreens(scrollPercent) {
-                let activeScreen = 0;
-                if (scrollPercent < 0.15) activeScreen = 1;
-                else if (scrollPercent < 0.40) activeScreen = 2;
-                else if (scrollPercent < 0.60) activeScreen = 3;
-                else if (scrollPercent < 0.85) activeScreen = 4;
-                else activeScreen = 5;
-
-                screens.forEach((screen, index) => {
-                    screen.classList.toggle('active', index + 1 === activeScreen);
-                });
-            }
-            
-            // --- IDLE OVERLAY LOGIC ---
-            let idleTimer = null;
-            function showIdleOverlay() {
-                const isAtBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
-                if (!isAtBottom) {
-                    idleOverlay.classList.add('visible');
-                }
-            }
-            function hideIdleOverlay() {
-                idleOverlay.classList.remove('visible');
-            }
-            function resetIdleTimer() {
-                clearTimeout(idleTimer);
-                hideIdleOverlay();
-                idleTimer = setTimeout(showIdleOverlay, 5000);
-            }
-
-            // --- MAIN SCROLL HANDLER ---
-            function handleScroll() {
-                resetIdleTimer();
-                const scrollableHeight = scrollContainer.scrollHeight - window.innerHeight;
-                const scrollTop = window.pageYOffset;
-                const scrollPercent = Math.max(0, Math.min(1, scrollTop / scrollableHeight));
-
-                window.requestAnimationFrame(() => {
-                    updateScreens(scrollPercent);
-                    drawAnimation(scrollPercent);
-                });
-            }
-
-            // --- INITIALIZATION AND RESIZE HANDLER ---
-            window.addEventListener('resize', () => {
-                ({ width, height } = canvas.getBoundingClientRect());
-                canvas.width = width * window.devicePixelRatio;
-                canvas.height = height * window.devicePixelRatio;
-                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-                handleScroll();
-            });
-
-            handleScroll();
-            window.addEventListener('scroll', handleScroll);
+        // Event Listeners
+        window.addEventListener('resize', init); // Re-initialize on window resize
+        
+        // **FIX:** Wait for all fonts to be loaded before starting the animation.
+        // This prevents race conditions where the script runs before fonts are available.
+        document.fonts.ready.then(() => {
+            mainContent.style.visibility = 'visible'; // Make content visible
+            init(); // Initial setup
+            changeFont(); // Set initial font
+            animate(); // Start the animation loop
         });
     </script>
+
 </body>
 </html>
