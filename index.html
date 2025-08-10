@@ -51,6 +51,20 @@
         .game-icon {
             filter: invert(95%) sepia(6%) saturate(235%) hue-rotate(180deg) brightness(90%) contrast(95%);
         }
+        .modal-enter {
+            animation: fadeInModal 0.3s ease-out forwards;
+        }
+        .modal-leave {
+            animation: fadeOutModal 0.3s ease-in forwards;
+        }
+        @keyframes fadeInModal {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeOutModal {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.95); }
+        }
     </style>
 </head>
 <body class="gradient-bg">
@@ -58,13 +72,21 @@
     <div class="container mx-auto max-w-4xl px-4 py-8 sm:py-16">
 
         <!-- Section 1: PFP and Name -->
-        <header class="flex flex-col sm:flex-row items-center justify-center text-center sm:text-left sm:justify-start space-y-6 sm:space-y-0 sm:space-x-8 mb-16 fade-in fade-in-1">
-            <img src="https://raw.githubusercontent.com/StufferZ/refreshedbio/refs/heads/main/pfp.jpg" 
-                 alt="Profile Picture" 
-                 class="w-32 h-32 rounded-full border-4 border-gray-700 shadow-lg">
-            <div>
-                <h1 class="text-5xl md:text-6xl font-black tracking-tighter">leizark</h1>
-                <p class="text-lg text-slate-400 mt-1">Gamer & Shitposter</p>
+        <header class="flex flex-col sm:flex-row items-center justify-center sm:justify-between mb-16 fade-in fade-in-1">
+            <div class="flex flex-col sm:flex-row items-center text-center sm:text-left space-y-6 sm:space-y-0 sm:space-x-8">
+                <img src="https://raw.githubusercontent.com/StufferZ/refreshedbio/refs/heads/main/pfp.jpg" 
+                     alt="Profile Picture" 
+                     class="w-32 h-32 rounded-full border-4 border-gray-700 shadow-lg">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-black tracking-tighter">leizark</h1>
+                    <p class="text-lg text-slate-400 mt-1">Gamer & Shitposter</p>
+                </div>
+            </div>
+            <div class="mt-6 sm:mt-0">
+                <button id="discord-button" class="inline-flex items-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg">
+                    <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/discord-white-icon.png" alt="Discord Icon" class="w-6 h-6 mr-3">
+                    Ask me anything!
+                </button>
             </div>
         </header>
 
@@ -153,9 +175,56 @@
         <footer class="text-center mt-20 pt-8 border-t border-gray-800 fade-in fade-in-5">
             <p class="text-slate-500">made by leizark + gemini</p>
         </footer>
-
     </div>
+
+    <!-- Modal -->
+    <div id="discord-modal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div id="modal-content" class="bg-gray-800 border border-gray-700 rounded-lg p-8 shadow-2xl max-w-sm w-full text-center relative">
+            <p class="text-xl font-semibold mb-4">Discord: secretaccleizkkk</p>
+            <button id="close-modal-button" class="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- Modal Logic ---
+        const discordButton = document.getElementById('discord-button');
+        const discordModal = document.getElementById('discord-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModalButton = document.getElementById('close-modal-button');
+
+        // Function to open the modal
+        function openModal() {
+            discordModal.classList.remove('hidden');
+            modalContent.classList.remove('modal-leave');
+            modalContent.classList.add('modal-enter');
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modalContent.classList.remove('modal-enter');
+            modalContent.classList.add('modal-leave');
+            setTimeout(() => {
+                discordModal.classList.add('hidden');
+            }, 300); // Wait for animation to finish
+        }
+
+        // Event listener for the main button
+        discordButton.addEventListener('click', openModal);
+
+        // Event listener for the close button inside the modal
+        closeModalButton.addEventListener('click', closeModal);
+
+        // Event listener to close the modal if the overlay (background) is clicked
+        discordModal.addEventListener('click', (event) => {
+            if (event.target === discordModal) {
+                closeModal();
+            }
+        });
+    </script>
 
 </body>
 </html>
-
