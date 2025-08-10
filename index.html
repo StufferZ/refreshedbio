@@ -3,192 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
-    <!-- Preconnect to Google Fonts for better performance -->
+    <title>leizark's Bio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Import a variety of fonts from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&family=Lato:wght@400;700&family=Open+Sans:wght@400;700&family=Slabo+27px&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Source+Code+Pro:wght@400;700&family=Dancing+Script:wght@400;700&family=Lobster&family=Pacifico&family=Caveat&family=Special+Elite&family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Basic reset and body styling */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #ffffff; /* Clean white background */
-            color: #000000; /* Black text color */
-            font-family: 'Roboto', sans-serif; /* Default font */
+        /* Custom styles for the page */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e2e8f0;
+            overflow-x: hidden;
         }
-
-        /* Main content area */
-        #main-content {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            visibility: hidden; /* Hide until fonts are loaded */
+        .gradient-bg {
+            background: radial-gradient(circle at top, rgba(31, 41, 55, 0.3), transparent 70%), #0a0a0a;
         }
-
-        /* Container for the bouncing text. Using absolute positioning for movement. */
-        #soon-container {
-            position: absolute;
-            white-space: nowrap; /* Prevents text from wrapping */
+        .card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
-
-        /* Styling for the "SOON" text */
-        #soon-text {
-            font-size: 8vw; /* Responsive font size based on viewport width */
-            font-weight: bold;
-            letter-spacing: 0.5em; /* Spacing between letters */
-            text-transform: uppercase;
-            transition: font-family 0.2s ease-in-out; /* Smooth transition for font change */
-            padding: 10px;
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
         }
-
-        /* Message to prompt user to rotate their device */
-        #rotate-message {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
-            color: #000000;
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-size: 5vw;
-            font-family: 'Poppins', sans-serif;
+        .link-hover {
+            transition: color 0.3s ease;
         }
-
-        /* Media query to show the rotate message on portrait mobile screens */
-        @media (max-width: 768px) and (orientation: portrait) {
-            #main-content {
-                display: none; /* Hide the bouncing text */
-            }
-            #rotate-message {
-                display: flex; /* Show the rotate message */
-            }
+        .link-hover:hover {
+            color: #38bdf8; /* Light blue on hover */
+        }
+        .fade-in {
+            animation: fadeInAnimation 1s ease-in-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInAnimation {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Staggered animations */
+        .fade-in-1 { animation-delay: 0.2s; }
+        .fade-in-2 { animation-delay: 0.4s; }
+        .fade-in-3 { animation-delay: 0.6s; }
+        .fade-in-4 { animation-delay: 0.8s; }
+        .fade-in-5 { animation-delay: 1.0s; }
+        .game-icon {
+            filter: invert(95%) sepia(6%) saturate(235%) hue-rotate(180deg) brightness(90%) contrast(95%);
         }
     </style>
 </head>
-<body>
+<body class="gradient-bg">
 
-    <div id="main-content">
-        <div id="soon-container">
-            <h1 id="soon-text">S O O N</h1>
-        </div>
+    <div class="container mx-auto max-w-4xl px-4 py-8 sm:py-16">
+
+        <!-- Section 1: PFP and Name -->
+        <header class="flex flex-col sm:flex-row items-center justify-center text-center sm:text-left sm:justify-start space-y-6 sm:space-y-0 sm:space-x-8 mb-16 fade-in fade-in-1">
+            <img src="https://placehold.co/128x128/1f2937/e2e8f0?text=PFP" 
+                 alt="Profile Picture" 
+                 class="w-32 h-32 rounded-full border-4 border-gray-700 shadow-lg">
+            <div>
+                <h1 class="text-5xl md:text-6xl font-black tracking-tighter">leizark</h1>
+                <p class="text-lg text-slate-400 mt-1">Gamer & Developer</p>
+            </div>
+        </header>
+
+        <main class="space-y-12">
+            <!-- Section 2: Favourite Games -->
+            <section class="fade-in fade-in-2">
+                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 text-sky-400"><path d="M2.15 17.23h2.32a2 2 0 0 0 1.79-1.11l1.35-2.26a2 2 0 0 1 1.79-1.11h2.32a2 2 0 0 1 1.79 1.11l1.35 2.26a2 2 0 0 0 1.79 1.11h2.32"></path><path d="m12 12-2-3 2-3 2 3-2 3z"></path><path d="M12 22V12"></path><path d="M12 2v2"></path><path d="M22 12h-2"></path><path d="M4 12H2"></path></svg>
+                    Favourite Games
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="card p-4 rounded-lg flex items-center space-x-4">
+                        <img src="https://raw.githubusercontent.com/StufferZ/refreshedbio/refs/heads/main/cs21.png" alt="Counter-Strike 2 Logo" class="w-12 h-12 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/48x48/1f2937/e2e8f0?text=CS2';">
+                        <h3 class="font-bold text-lg">Counter-Strike 2</h3>
+                    </div>
+                    <div class="card p-4 rounded-lg flex items-center space-x-4">
+                        <img src="https://img.icons8.com/ios7/512/FFFFFF/geometry-dash.png" alt="Geometry Dash Logo" class="w-12 h-12 object-contain game-icon" onerror="this.onerror=null;this.src='https://placehold.co/48x48/1f2937/e2e8f0?text=GD';">
+                        <h3 class="font-bold text-lg">Geometry Dash</h3>
+                    </div>
+                    <div class="card p-4 rounded-lg flex items-center space-x-4">
+                        <img src="https://static.vecteezy.com/system/resources/previews/027/127/593/non_2x/grand-theft-auto-gta-v-logo-grand-theft-auto-gta-v-icon-transparent-free-png.png" alt="Grand Theft Auto V Logo" class="w-12 h-12 object-contain game-icon" onerror="this.onerror=null;this.src='https://placehold.co/48x48/1f2937/e2e8f0?text=GTAV';">
+                        <h3 class="font-bold text-lg">Grand Theft Auto V</h3>
+                    </div>
+                    <div class="card p-4 rounded-lg flex items-center space-x-4">
+                        <img src="https://static.thenounproject.com/png/431729-200.png" alt="Minecraft Logo" class="w-12 h-12 object-contain game-icon" onerror="this.onerror=null;this.src='https://placehold.co/48x48/1f2937/e2e8f0?text=MC';">
+                        <h3 class="font-bold text-lg">Minecraft</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: GD Hardests -->
+            <section class="fade-in fade-in-3">
+                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 text-red-500"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg>
+                    My GD Hardests
+                </h2>
+                <ul class="space-y-3">
+                    <li class="card p-4 rounded-lg flex items-center justify-between">
+                        <span class="font-medium">8o by Zobros</span>
+                        <a href="https://youtu.be/yV3jnAMgc2k?si=Y_Ebrf-3g59V5n0t" target="_blank" rel="noopener noreferrer" class="link-hover flex items-center text-slate-400">
+                            Watch
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M9 18l6-6-6-6"/></svg>
+                        </a>
+                    </li>
+                    <li class="card p-4 rounded-lg flex items-center justify-between">
+                        <span class="font-medium">Necropolis by Neptune</span>
+                        <a href="https://youtu.be/1439Y6WkRts?si=85pRmOmNFidrIklv" target="_blank" rel="noopener noreferrer" class="link-hover flex items-center text-slate-400">
+                            Watch
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M9 18l6-6-6-6"/></svg>
+                        </a>
+                    </li>
+                    <li class="card p-4 rounded-lg flex items-center justify-between">
+                        <span class="font-medium">Windy Landscape by WOOGI1411</span>
+                        <a href="https://youtu.be/1439Y6WkRts?si=85pRmOmNFidrIklv" target="_blank" rel="noopener noreferrer" class="link-hover flex items-center text-slate-400">
+                            Watch
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M9 18l6-6-6-6"/></svg>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section 4: Personal Info -->
+            <section class="fade-in fade-in-4">
+                 <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 text-green-400"><circle cx="12" cy="12" r="10"></circle><line x1="2" x2="22" y1="12" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    About Me
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                    <div class="card p-4 rounded-lg">
+                        <p class="text-slate-400 text-sm">Location</p>
+                        <p class="font-bold text-lg">🇰🇿 Kazakhstan</p>
+                    </div>
+                    <div class="card p-4 rounded-lg">
+                        <p class="text-slate-400 text-sm">Timezone</p>
+                        <p class="font-bold text-lg">GMT+5</p>
+                    </div>
+                    <div class="card p-4 rounded-lg">
+                        <p class="text-slate-400 text-sm">Birthday</p>
+                        <p class="font-bold text-lg">17/09</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-20 pt-8 border-t border-gray-800 fade-in fade-in-5">
+            <p class="text-slate-500">made by leizark + gemini</p>
+        </footer>
+
     </div>
-
-    <div id="rotate-message">
-        Please rotate your device to landscape mode.
-    </div>
-
-    <script>
-        // DOM Elements
-        const mainContent = document.getElementById('main-content');
-        const soonContainer = document.getElementById('soon-container');
-        const soonText = document.getElementById('soon-text');
-
-        // Font array
-        const fonts = [
-            'Roboto', 'Montserrat', 'Lato', 'Open Sans', 'Slabo 27px',
-            'Playfair Display', 'Poppins', 'Source Code Pro', 'Dancing Script',
-            'Lobster', 'Pacifico', 'Caveat', 'Special Elite', 'Press Start 2P', 'Orbitron'
-        ];
-        let lastFontIndex = -1;
-
-        // Animation variables
-        let x, y; // Position
-        let dx, dy; // Velocity (direction)
-        let containerWidth, containerHeight;
-        let windowWidth, windowHeight;
-
-        /**
-         * Changes the font of the 'soonText' element to a random one from the 'fonts' array.
-         */
-        function changeFont() {
-            let randomIndex;
-            do {
-                randomIndex = Math.floor(Math.random() * fonts.length);
-            } while (randomIndex === lastFontIndex);
-            lastFontIndex = randomIndex;
-            soonText.style.fontFamily = `'${fonts[randomIndex]}', sans-serif`;
-        }
-
-        /**
-         * Initializes or re-initializes the animation variables.
-         * Called on load and on window resize.
-         */
-        function init() {
-            // Get the dimensions of the window and the text container
-            windowWidth = window.innerWidth;
-            windowHeight = window.innerHeight;
-            containerWidth = soonContainer.clientWidth;
-            containerHeight = soonContainer.clientHeight;
-
-            // Set a random starting position
-            x = Math.random() * (windowWidth - containerWidth);
-            y = Math.random() * (windowHeight - containerHeight);
-
-            // Set a random starting velocity/direction
-            dx = (Math.random() < 0.5 ? 1 : -1) * 3; // Horizontal speed
-            dy = (Math.random() < 0.5 ? 1 : -1) * 3; // Vertical speed
-        }
-
-        /**
-         * The main animation loop.
-         */
-        function animate() {
-            // Update position based on velocity
-            x += dx;
-            y += dy;
-
-            // Collision detection with window edges
-            let bounced = false;
-            // Right or left wall
-            if (x + containerWidth >= windowWidth || x <= 0) {
-                dx = -dx; // Reverse horizontal direction
-                if (x < 0) x = 0; // Prevent getting stuck
-                if (x + containerWidth > windowWidth) x = windowWidth - containerWidth;
-                bounced = true;
-            }
-            // Bottom or top wall
-            if (y + containerHeight >= windowHeight || y <= 0) {
-                dy = -dy; // Reverse vertical direction
-                if (y < 0) y = 0; // Prevent getting stuck
-                if (y + containerHeight > windowHeight) y = windowHeight - containerHeight;
-                bounced = true;
-            }
-            
-            // Change font if a bounce occurred
-            if (bounced) {
-                changeFont();
-            }
-
-            // Apply the new position to the container
-            soonContainer.style.left = `${x}px`;
-            soonContainer.style.top = `${y}px`;
-
-            // Request the next frame to continue the animation
-            requestAnimationFrame(animate);
-        }
-
-        // Event Listeners
-        window.addEventListener('resize', init); // Re-initialize on window resize
-        
-        // **FIX:** Wait for all fonts to be loaded before starting the animation.
-        // This prevents race conditions where the script runs before fonts are available.
-        document.fonts.ready.then(() => {
-            mainContent.style.visibility = 'visible'; // Make content visible
-            init(); // Initial setup
-            changeFont(); // Set initial font
-            animate(); // Start the animation loop
-        });
-    </script>
 
 </body>
 </html>
